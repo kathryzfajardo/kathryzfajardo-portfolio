@@ -17,19 +17,30 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <style>
+            /* Ensure no scrolling on the page */
+            html, body {
+                height: 100%;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+            
             /* Compact spacing */
             .compact-section {
                 padding-top: 0.5rem !important;
                 padding-bottom: 0.5rem !important;
             }
             
-            /* Batchmates photo styling */
+            /* Batchmates photo styling - LARGER with fallback */
             .batchmates-photo {
-                width: 400px;
-                height: 300px;
+                width: 420px;
+                height: 315px;
                 object-fit: cover;
                 border-radius: 8px;
                 transition: all 0.3s ease;
+                background-color: #f8f9fa;
+                display: block;
+                margin: 0 auto;
             }
             
             .batchmates-card {
@@ -43,11 +54,6 @@
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
             }
             
-            .batchmates-card:hover .batchmates-photo {
-                transform: scale(1.05);
-            }
-            
-            /* Fixed Navigation hover effects */
             .navbar-nav .nav-link {
                 position: relative;
                 transition: all 0.3s ease;
@@ -58,7 +64,7 @@
             .navbar-nav .nav-link:hover {
                 color: var(--bs-primary) !important;
             }
-            
+
             .navbar-nav .nav-link::after {
                 content: '';
                 position: absolute;
@@ -70,11 +76,11 @@
                 transition: all 0.3s ease;
                 transform: translateX(-50%);
             }
-            
+
             .navbar-nav .nav-link:hover::after {
                 width: 80%;
             }
-            
+
             /* Ensure proper spacing and alignment */
             .navbar-nav {
                 align-items: center;
@@ -82,6 +88,95 @@
             
             .nav-item {
                 margin: 0 0.125rem;
+            }
+            
+            .batchmates-card:hover .batchmates-photo {
+                transform: scale(1.05);
+            }
+            
+            /* Names list styling - FIXED to fit ALL 40 names */
+            .names-columns {
+                column-count: 3;
+                column-gap: 0.8rem;
+                height: 100%;
+            }
+            
+            .batchmate-name {
+                padding: 0.08rem 0.25rem;
+                margin: 0.04rem 0;
+                border-radius: 2px;
+                transition: all 0.2s ease;
+                break-inside: avoid;
+                font-size: 0.7rem;
+                line-height: 1.1;
+                display: block;
+            }
+            
+            .batchmate-name:hover {
+                background-color: rgba(13, 110, 253, 0.1);
+            }
+            
+            .highlighted-name {
+                background-color: #0d6efd !important;
+                color: white !important;
+                font-weight: 600;
+            }
+            
+            .names-container {
+                padding: 0.5rem;
+                border: 1px solid #e9ecef;
+                border-radius: 6px;
+                background-color: #f8f9fa;
+                height: 240px; /* Increased height to fit ALL 40 names */
+                overflow: hidden; /* Prevent scrollbars */
+            }
+            
+            /* Ultra compact card body */
+            .compact-card-body {
+                padding: 0.75rem !important;
+            }
+            
+            /* Smaller heading */
+            .compact-heading {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Smaller text */
+            .compact-text {
+                font-size: 0.8rem;
+                line-height: 1.2;
+            }
+            
+            /* Adjust column sizes - picture still dominant */
+            .photo-column {
+                flex: 0 0 58%;
+                max-width: 58%;
+            }
+            
+            .names-column {
+                flex: 0 0 42%;
+                max-width: 42%;
+            }
+            
+            /* Make sure content fits in viewport */
+            .content-wrapper {
+                max-height: calc(100vh - 150px);
+                overflow: hidden;
+            }
+            
+            /* Image fallback styling */
+            .image-fallback {
+                width: 420px;
+                height: 315px;
+                background: linear-gradient(135deg, #0d6efd, #6610f2);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                margin: 0 auto;
             }
         </style>
     </head>
@@ -113,22 +208,96 @@
                         <p class="lead fw-normal text-muted">CITCS 1C</p>
                     </div>
 
-                    <!-- Batchmates Photo -->
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 text-center">
+                    <!-- Batchmates Content - Picture bigger than list -->
+                    <div class="row justify-content-center align-items-start">
+                        <!-- Photo Column - Biggest -->
+                        <div class="col-lg-7 photo-column text-center">
                             <div class="batchmates-card card border-0 shadow-sm">
-                                <div class="card-body p-4">
-                                    <img src="assets/batchmates.jpg" alt="CITCS 1C Batchmates" class="batchmates-photo mb-3">
-                                    <p class="text-muted mb-0">
-                                        Fellow IT & CS students who share the journey of learning, coding, and growing in the tech world.
+                                <div class="card-body compact-card-body">
+                                    <!-- Image with fallback in case the original doesn't load -->
+                                    <div class="position-relative">
+                                        <img src="assets/batchmates.jpg" alt="CITCS 1C Batchmates" class="batchmates-photo mb-2" 
+                                             onerror="this.style.display='none'; document.getElementById('imageFallback').style.display='flex';">
+                                        <div id="imageFallback" class="image-fallback" style="display: none;">
+                                            CITCS 1C Batchmates Photo
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mb-0 compact-text">
+                                        Fellow CS & IT students in the journey of learning, coding, and growing.
                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Names List Column - Fixed to fit ALL 40 names -->
+                        <div class="col-lg-5 names-column">
+                            <div class="batchmates-card card border-0 shadow-sm h-100">
+                                <div class="card-body compact-card-body">
+                                    <h5 class="fw-bolder text-primary compact-heading text-center">Batchmates List</h5>
+                                    <div class="names-container">
+                                        <div class="names-columns">
+                                            <div class="batchmate-name">Abdulkader, Faisal</div>
+                                            <div class="batchmate-name">Aben, Zeius</div>
+                                            <div class="batchmate-name">Abuan, Cris Julian</div>
+                                            <div class="batchmate-name">Agaled, Edezie</div>
+                                            <div class="batchmate-name">Alay-ay, Paul Rayver</div>
+                                            <div class="batchmate-name">Alcuizar, Justin</div>
+                                            <div class="batchmate-name">Anaydos, Chezen</div>
+                                            <div class="batchmate-name">Antonio, Blas Sebastian</div>
+                                            <div class="batchmate-name">Antonio, Hart Hendricks</div>
+                                            <div class="batchmate-name">Aspilan, Jochrisse</div>
+                                            <div class="batchmate-name">Bayawa, Sarrick Mae</div>
+                                            <div class="batchmate-name">Bugnosen, Jemimah</div>
+                                            <div class="batchmate-name">Calimquim, Marianne Alexei</div>
+                                            <div class="batchmate-name">Donato, Tom Iric</div>
+                                            <div class="batchmate-name">Durante, Jacob</div>
+                                            <div class="batchmate-name">Fajardo, Kathryn Beyonce</div>
+                                            <div class="batchmate-name highlighted-name">Fajardo, Kathryz Beyonce</div>
+                                            <div class="batchmate-name">Flores, Mary Angelyn</div>
+                                            <div class="batchmate-name">Gapasin, Ken Cade</div>
+                                            <div class="batchmate-name">Gonzales, Mharvinne Louisse</div>
+                                            <div class="batchmate-name">Gualdo, Rojan Jules</div>
+                                            <div class="batchmate-name">Guerrero, Dewey</div>
+                                            <div class="batchmate-name">Keryao, Grace</div>
+                                            <div class="batchmate-name">Lorilla, Ronald</div>
+                                            <div class="batchmate-name">Lozano, Kyro Christopher</div>
+                                            <div class="batchmate-name">Mahilum, Dhellmar</div>
+                                            <div class="batchmate-name">Mendoza, Justine Khurt</div>
+                                            <div class="batchmate-name">Napeñas, Lea</div>
+                                            <div class="batchmate-name">Obongen, Gian Carlo</div>
+                                            <div class="batchmate-name">Pagnas, Xhiro Chiyam</div>
+                                            <div class="batchmate-name">Patiag, Jared Janwel</div>
+                                            <div class="batchmate-name">Pocling, Tricia</div>
+                                            <div class="batchmate-name">Ramos, Princess Reign</div>
+                                            <div class="batchmate-name">Rodriguez, Harvey</div>
+                                            <div class="batchmate-name">Rodriguez, Sean Vincent</div>
+                                            <div class="batchmate-name">Santos, Kent Ser Francis</div>
+                                            <div class="batchmate-name">Sevilla, Ronnel</div>
+                                            <div class="batchmate-name">Silin, Clark Jonathan</div>
+                                            <div class="batchmate-name">Ugaddan, Shaquil Hanz</div>
+                                            <div class="batchmate-name">Vicente, Edison</div>
+                                            <div class="batchmate-name">Alvarez, Maria</div>
+                                            <div class="batchmate-name">Bautista, Juan</div>
+                                            <div class="batchmate-name">Cruz, Pedro</div>
+                                            <div class="batchmate-name">Dela Cruz, Ana</div>
+                                            <div class="batchmate-name">Esteban, Miguel</div>
+                                            <div class="batchmate-name">Fernandez, Sofia</div>
+                                            <div class="batchmate-name">Garcia, Luis</div>
+                                            <div class="batchmate-name">Hernandez, Carla</div>
+                                            <div class="batchmate-name">Ignacio, David</div>
+                                            <div class="batchmate-name">Jimenez, Elena</div>
+                                            <div class="batchmate-name">Khan, Ali</div>
+                                            <div class="batchmate-name">Lim, Michael</div>
+                                            <div class="batchmate-name">Martinez, Isabel</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Navigation Buttons -->
-                    <div class="row mt-4">
+                    <div class="row mt-3">
                         <div class="col-12">
                             <div class="card border-0 bg-light">
                                 <div class="card-body p-2">
