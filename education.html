@@ -63,6 +63,47 @@
                 display: flex;
                 gap: 10px;
             }
+
+            /* Larger education cards */
+            .education-card {
+                transition: all 0.3s ease;
+            }
+            
+            .education-card .card-body {
+                padding: 0.9rem !important;
+            }
+            
+            .education-card .rounded-3 {
+                min-width: 90px !important;
+            }
+            
+            .education-card img {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            .education-card h4 {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .education-card .text-muted.fw-bold {
+                font-size: 1rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .education-card small.text-muted {
+                font-size: 0.9rem !important;
+            }
+            
+            .education-card .achievements {
+                margin-top: 1rem !important;
+            }
+            
+            .education-card .badge {
+                font-size: 0.85rem !important;
+                padding: 0.5rem 0.75rem !important;
+            }
         </style>
     </head>
     <body class="d-flex flex-column h-100">
@@ -180,7 +221,46 @@
                         </div>
                     </div>
 
-                    <!-- Removed the navigation buttons from content area -->
+                    <!-- Summary Stats - Made Bigger -->
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body p-3">
+                                    <div class="row align-items-center">
+                                        <!-- Previous Button -->
+                                        <div class="col-md-2 col-6 text-start">
+                                        </div>
+                                        
+                                        <!-- Stats - Made Bigger -->
+                                        <div class="col-md-8 col-12">
+                                            <div class="row text-center">
+                                                <div class="col-3 mb-2">
+                                                    <div class="fw-bolder text-primary fs-6">4</div>
+                                                    <div class="text-muted">Schools</div>
+                                                </div>
+                                                <div class="col-3 mb-2">
+                                                    <div class="fw-bolder text-primary fs-6">10+</div>
+                                                    <div class="text-muted">Honors</div>
+                                                </div>
+                                                <div class="col-3 mb-2">
+                                                    <div class="fw-bolder text-primary fs-6">CS</div>
+                                                    <div class="text-muted">Undergrad</div>
+                                                </div>
+                                                <div class="col-3 mb-2">
+                                                    <div class="fw-bolder text-primary fs-6">STEM</div>
+                                                    <div class="text-muted">Strand</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Next Button -->
+                                        <div class="col-md-2 col-6 text-end">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
