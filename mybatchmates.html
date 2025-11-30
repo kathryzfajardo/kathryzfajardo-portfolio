@@ -178,6 +178,16 @@
                 font-weight: bold;
                 margin: 0 auto;
             }
+
+            /* Fixed navigation buttons */
+            .fixed-nav-buttons {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                display: flex;
+                gap: 10px;
+            }
         </style>
     </head>
     <body class="d-flex flex-column h-100">
@@ -296,38 +306,20 @@
                         </div>
                     </div>
 
-                    <!-- Navigation Buttons -->
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <div class="card border-0 bg-light">
-                                <div class="card-body p-2">
-                                    <div class="row align-items-center">
-                                        <!-- Previous Button -->
-                                        <div class="col-md-2 col-6 text-start">
-                                            <a href="myfamily.html" class="btn btn-outline-primary btn-sm">
-                                                <i class="bi bi-arrow-left me-1"></i>Previous
-                                            </a>
-                                        </div>
-                                        
-                                        <!-- Empty Center Space -->
-                                        <div class="col-md-8 col-12">
-                                            <!-- Empty space where stats used to be -->
-                                        </div>
-                                        
-                                        <!-- Next Button -->
-                                        <div class="col-md-2 col-6 text-end">
-                                            <a href="index.html" class="btn btn-primary btn-sm">
-                                                Next<i class="bi bi-arrow-right ms-1"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Removed navigation buttons from content area -->
                 </div>
             </section>
         </main>
+
+        <!-- Fixed Navigation Buttons -->
+        <div class="fixed-nav-buttons">
+            <a href="myfamily.html" class="btn btn-outline-primary btn-lg px-4 py-2">
+                <i class="bi bi-arrow-left me-1"></i>Previous
+            </a>
+            <a href="index.html" class="btn btn-primary btn-lg px-4 py-2">
+                Next <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
