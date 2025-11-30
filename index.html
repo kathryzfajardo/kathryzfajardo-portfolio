@@ -53,13 +53,15 @@
             .nav-item {
                 margin: 0 0.125rem;
             }
-            
-            /* Navigation buttons positioning */
-            .nav-buttons-container {
+
+            /* Fixed navigation buttons */
+            .fixed-nav-buttons {
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
                 z-index: 1000;
+                display: flex;
+                gap: 10px;
             }
         </style>
     </head>
@@ -117,6 +119,8 @@
                                         </a>
                                     </div>
                                 </div>
+
+                                <!-- Removed the original next button from content -->
                             </div>
                         </div>
                         
@@ -146,9 +150,9 @@
             </section>
         </main>
 
-        <!-- Navigation Buttons - Fixed to lower right corner -->
-        <div class="nav-buttons-container">
-            <a class="btn btn-primary btn-lg px-4 py-2 fs-6 fw-bolder" href="education.html">
+        <!-- Fixed Navigation Buttons -->
+        <div class="fixed-nav-buttons">
+            <a href="education.html" class="btn btn-primary btn-lg px-4 py-2">
                 Next <i class="bi bi-arrow-right ms-1"></i>
             </a>
         </div>
