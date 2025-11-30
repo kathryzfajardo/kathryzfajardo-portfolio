@@ -53,6 +53,14 @@
             .nav-item {
                 margin: 0 0.125rem;
             }
+            
+            /* Navigation buttons positioning */
+            .nav-buttons-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+            }
         </style>
     </head>
     <body class="d-flex flex-column h-100">
@@ -109,10 +117,6 @@
                                         </a>
                                     </div>
                                 </div>
-
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-lg-start">
-                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="education.html">Next</a>
-                                </div>
                             </div>
                         </div>
                         
@@ -141,6 +145,13 @@
                 </div>
             </section>
         </main>
+
+        <!-- Navigation Buttons - Fixed to lower right corner -->
+        <div class="nav-buttons-container">
+            <a class="btn btn-primary btn-lg px-4 py-2 fs-6 fw-bolder" href="education.html">
+                Next <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
