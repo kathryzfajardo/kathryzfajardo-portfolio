@@ -12047,3 +12047,16 @@ header.py-5 {
 .display-6 {
     font-size: calc(1.5rem + 1.5vw) !important;
 }
+
+/* Ensure no scrolling on any device */
+html, body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-height: 100vh;
+    overflow: hidden;
+}
